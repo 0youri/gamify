@@ -13,7 +13,7 @@ export default {
         'dark-gray-100': '#696969',     
         'dark-gray-200': '#575757',  
         'dark-gray-400': '#464646', 
-        'darkgray-600': '#343434',
+        'dark-gray-600': '#343434',
         'dark-gray-800': '#232323',
         'dark': '#111111',
 
