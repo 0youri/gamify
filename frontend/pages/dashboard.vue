@@ -86,22 +86,23 @@
         <p class="text-xl">Add skill</p>
       </template>
       <template #default>
-        <div class="space-y-5">
+        <form class="space-y-5" @submit.prevent="addSkill(skillName); toggleModal()" @reset="toggleModal">
           <input
             v-model="skillName"
             type="text"
+            required minlength="1"
             class="w-full bg-dark-gray-400 rounded-xl text-sm py-3 px-5"
             placeholder="Skill name"
           />
           <div class="flex gap-5 text-sm w-full">
-            <button @click="toggleModal" class="bg-dark-gray-800 text-center rounded-xl py-3 px-5 w-full hover:bg-red-900">
+            <button type="reset" class="bg-dark-gray-800 text-center rounded-xl py-3 px-5 w-full hover:bg-red-900">
               Close
             </button>
-            <button @click="addSkill(skillName); toggleModal()" class="bg-dark-gray-800 text-center rounded-xl py-3 px-5 w-full hover:bg-green-900">
+            <button type="submit" class="bg-dark-gray-800 text-center rounded-xl py-3 px-5 w-full hover:bg-green-900">
               Add
             </button>
           </div>
-        </div>
+        </form>
       </template>
     </Modal>
   </div>
