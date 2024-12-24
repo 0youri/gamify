@@ -8,8 +8,9 @@ interface Skill {
 }
 
 export const useSkillStore = defineStore('skillStore', () => {
-  const skills = ref([
+  const defaultSkills = ref([
     {
+      order: 1,
       name: 'Coding',
       level: 6,
       xp: 600,
@@ -20,6 +21,7 @@ export const useSkillStore = defineStore('skillStore', () => {
       ]
     },
     {
+      order: 2,
       name: 'Guitar',
       level: 2,
       xp: 200,
@@ -29,6 +31,7 @@ export const useSkillStore = defineStore('skillStore', () => {
       ]
     },
     {
+      order: 3,
       name: 'Cooking',
       level: 10,
       xp: 1000,
@@ -39,6 +42,7 @@ export const useSkillStore = defineStore('skillStore', () => {
       ]
     },
     {
+      order: 4,
       name: 'Dancing',
       level: 8,
       xp: 850,
@@ -49,6 +53,7 @@ export const useSkillStore = defineStore('skillStore', () => {
       ]
     },
     {
+      order: 5,
       name: 'Writing',
       level: 5,
       xp: 510,
@@ -60,6 +65,8 @@ export const useSkillStore = defineStore('skillStore', () => {
     }
   ])
 
+
+  const skills = ref<Skill[]>([])
   const skill = ref<Skill | null>(null)
 
   const addSkill = (name: string) => {
@@ -70,11 +77,41 @@ export const useSkillStore = defineStore('skillStore', () => {
       logs: []
     }
     skills.value.push(newSkill)
+    addSkillsToLocalStorage()
   }
 
-  const removeSkill = (skill: Skill) => {
-    const index = skills.value.indexOf(skill)
-    skills.value.splice(index, 1)
+  const addSkillsToLocalStorage = () => {
+    localStorage.setItem('skills', JSON.stringify(skills.value))
+  }
+
+  const getSkillsFromLocalStorage = () => {
+    const skillsFromLocalStorage = localStorage.getItem('skills')
+    if (skillsFromLocalStorage) {
+      skills.value = JSON.parse(skillsFromLocalStorage)
+    } else {
+      skills.value = defaultSkills.value
+      addSkillsToLocalStorage()
+    }
+  }
+
+  const eraseAllLogs = (name: string) => {
+    const skillToUpdate = skills.value.find(skill => skill.name.toLowerCase() === name.toLowerCase())
+    if (skillToUpdate) {
+      skillToUpdate.logs = []
+      skillToUpdate.level = 0
+      skillToUpdate.xp = 0
+      addSkillsToLocalStorage()
+    }
+  }
+
+  const removeSkill = (name: string) => {
+    const index = skills.value.findIndex(skill => skill.name.toLowerCase() === name.toLowerCase())
+    if (index !== -1) {
+      skills.value.splice(index, 1)
+      addSkillsToLocalStorage()
+      navigateTo('/dashboard')
+    }
+
   }
 
   const addXP = (name: string, xp: number) => {
@@ -105,7 +142,7 @@ export const useSkillStore = defineStore('skillStore', () => {
 
   return {
     skills, skill,
-    addSkill, addLog,
+    addSkill, addLog, removeSkill, eraseAllLogs, getSkillsFromLocalStorage,
     getSkill,
     addXP,
   }

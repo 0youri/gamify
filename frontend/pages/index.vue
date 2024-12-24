@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center gap-5 lg:gap-5">
     <!-- Page Header -->
     <div class="text-xl lg:text-xl font-medium text-center">
-      Can’t Decide? Let Us Pick for You!
+      Enjoy your learning journey !
     </div>
     <p class="lg:w-1/3 text-sm text-balance text-center">
       <span class="italic">Gamify</span> is a self-improvement app that turns learning into a game.
@@ -16,7 +16,9 @@
 </template>
 
 <script lang="ts" setup>
-
+  onMounted(() => {
+    localStorage.clear();
+  })
 </script>
 
 <style>
