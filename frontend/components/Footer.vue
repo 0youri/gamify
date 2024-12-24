@@ -1,5 +1,5 @@
 <template>
-    <footer class="flex justify-center border-t-2 border-dark py-5 gap-2 items-center text-md">
+    <footer class="flex justify-center border-t-2 border-dark-gray-800 py-5 gap-2 items-center text-md">
       <NuxtLink to="https://linktr.ee/0youri" class="cursor-pointer" target="_blank">
         @0youri
       </NuxtLink>
