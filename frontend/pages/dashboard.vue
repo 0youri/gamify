@@ -188,7 +188,7 @@
     if (modalName === 'addSkill') {
       skillName.value = '';
     } else if (modalName === 'editProfile') {
-      skillName.value = profile.value.username;
+      newUsername.value = ''
     }
   };
 
