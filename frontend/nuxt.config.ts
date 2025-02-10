@@ -5,5 +5,8 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'],
   app: {
     baseURL: '/apps/gamify/',
+    head: {
+      title: 'Gamify 🎮',
+    },
   },
 })
