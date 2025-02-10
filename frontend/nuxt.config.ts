@@ -4,6 +4,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'],
   app: {
-    baseURL: '/1app1week/gamify/',
+    baseURL: '/apps/gamify/',
   },
 })
